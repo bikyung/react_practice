@@ -1,29 +1,7 @@
-.counter {
-	margin-bottom: 30px;
-}
-
-.colorBox {
-	.box {
-		width: 100px;
-		height: 100px;
-		background: gray;
-	}
-}
-
-.pop {
-	width: 300px;
+.box {
+	width: 200px;
 	height: 200px;
-	background: #111;
-	padding: 50px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	h1 {
-		color: #fff;
-		margin-bottom: 50px;
-	}
-	.close {
-		color: #bbb;
-	}
+	background: aqua;
+	margin: 150px auto;
+	transition: 0.7s;
 }

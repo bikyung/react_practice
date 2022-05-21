@@ -1,29 +1,42 @@
 import './scss/style.scss';
-import { useEffect, useState } from 'react';
-import ColorBox from './ColorBox';
-import Counter from './Counter';
-import Popup from './Popup';
+import { useEffect, useState, useRef } from 'react';
 
 function App() {
-	const [open, setOpen] = useState(false);
 	console.log('app');
+	let [num, setNum] = useState(0);
+	// let [wid, setWid] = useState(null);
+	const box = useRef(null);
+	const wid = useRef(null);
 
 	useEffect(() => {
-		console.log('처음컴포넌트생성');
+		window.addEventListener('resize', () => {
+			// setWid(window.innerWidth);
+			wid.current = window.innerWidth;
+			console.log(wid.current);
+		});
 	}, []);
 
+	useEffect(() => {
+		console.log(wid);
+	}, [wid]);
 	return (
-		<>
+		<section>
 			<button
 				onClick={() => {
-					setOpen(!open);
+					setNum(--num);
+					box.current.style.transform = `rotate(${45 * num}deg)`;
 				}}>
-				{open ? '팝업 닫기' : '팝업 열기'}
+				prev
 			</button>
-			<Counter />
-			<ColorBox />
-			{open ? <Popup /> : null}
-		</>
+			<button
+				onClick={() => {
+					setNum(++num);
+					box.current.style.transform = `rotate(${45 * num}deg)`;
+				}}>
+				next
+			</button>
+			<div className='box' ref={box}></div>
+		</section>
 	);
 }
 
