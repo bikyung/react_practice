@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import './scss/style.scss';
+import { useEffect, useState } from 'react';
+import ColorBox from './ColorBox';
+import Counter from './Counter';
+import Popup from './Popup';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [open, setOpen] = useState(false);
+	console.log('app');
+
+	useEffect(() => {
+		console.log('처음컴포넌트생성');
+	}, []);
+
+	return (
+		<>
+			<button
+				onClick={() => {
+					setOpen(!open);
+				}}>
+				{open ? '팝업 닫기' : '팝업 열기'}
+			</button>
+			<Counter />
+			<ColorBox />
+			{open ? <Popup /> : null}
+		</>
+	);
 }
 
 export default App;
